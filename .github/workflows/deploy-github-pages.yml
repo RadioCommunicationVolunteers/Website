@@ -49,12 +49,6 @@ jobs:
           hugo --baseURL https://${REPO_OWNER}.github.io
           --minify
 
-      - name: Upload static files as artifact
-        id: deployment
-        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
-        with:
-          path: build_outputs_folder/
-
   # Deployment job
   deploy:
     environment:
@@ -63,6 +57,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # - name: Upload static files as artifact
+      #   id: deployment
+      #   uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+      #   with:
+      #     path: build_outputs_folder/
       - name: Deploy to GitHub Pages
         id: deploy
         uses: peaceiris/actions-gh-pages@v4
